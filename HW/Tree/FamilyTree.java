@@ -1,9 +1,12 @@
-package HW;
+package HW.Tree;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FamilyTree {
+import HW.Persons.Human;
+
+public class FamilyTree implements Serializable {
     private List<Human> humanList;
 
     public FamilyTree(List<Human> humanList) {
