@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class StudyGroup<E> implements Iterable<E> {
+public class StudyGroup<E extends GroupItem> implements Iterable<E> {
     private List<E> studentList;
 
     public StudyGroup() {

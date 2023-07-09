@@ -1,6 +1,6 @@
 package study_group;
 
-public class Student implements Comparable<Student> {
+public class Student implements Comparable<Student>, GroupItem {
     private int id;
     private String name;
     private int age;
@@ -24,10 +24,12 @@ public class Student implements Comparable<Student> {
         return name.compareTo(o.name);
     }
 
+    @Override
     public int getAge() {
         return age;
     }
 
+    @Override
     public String getName() {
         return name;
     }

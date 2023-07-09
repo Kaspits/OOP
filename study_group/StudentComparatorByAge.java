@@ -2,7 +2,7 @@ package study_group;
 
 import java.util.Comparator;
 
-public class StudentComparatorByAge<E> implements Comparator<E> {
+public class StudentComparatorByAge<E extends GroupItem> implements Comparator<E> {
     @Override
     public int compare(E o1, E o2) {
         return Integer.compare(o2.getAge(), o1.getAge());
