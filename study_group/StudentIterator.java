@@ -1,13 +1,13 @@
-package lesson_three;
+package study_group;
 
 import java.util.Iterator;
 import java.util.List;
 
-public class StudentIterator implements Iterator<Student> {
+public class StudentIterator<E> implements Iterator<E> {
     private int index;
-    private List<Student> studentList;
+    private List<E> studentList;
 
-    public StudentIterator(List<Student> studentList) {
+    public StudentIterator(List<E> studentList) {
         this.studentList = studentList;
     }
 
@@ -17,7 +17,7 @@ public class StudentIterator implements Iterator<Student> {
     }
 
     @Override
-    public Student next() {
+    public E next() {
         return studentList.get(index++);
     }
 }

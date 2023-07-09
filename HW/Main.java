@@ -14,9 +14,9 @@ public class Main {
 
         tree.add(new Human("Michael", Gender.Male, LocalDate.of(1964, 11, 21)));
         tree.add(new Human("Elena", Gender.Female, LocalDate.of(1968, 8, 21)));
-        tree.add(new Human("Maria", Gender.Female, LocalDate.of(1991, 6, 1), tree.getByName("Michale"),
+        tree.add(new Human("Maria", Gender.Female, LocalDate.of(1991, 6, 1), tree.getByName("Michael"),
                 tree.getByName("Elena")));
-        tree.add(new Human("Anastasiia", Gender.Female, LocalDate.of(2003, 3, 25), tree.getByName("Michale"),
+        tree.add(new Human("Anastasiia", Gender.Female, LocalDate.of(2003, 3, 25), tree.getByName("Michael"),
                 tree.getByName("Elena")));
 
         System.out.println(tree.getInfo());

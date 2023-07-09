@@ -1,10 +1,10 @@
-package lesson_three;
+package study_group;
 
 import java.util.Comparator;
 
-public class StudentComparatorByAge implements Comparator<Student> {
+public class StudentComparatorByAge<E> implements Comparator<E> {
     @Override
-    public int compare(Student o1, Student o2) {
+    public int compare(E o1, E o2) {
         return Integer.compare(o2.getAge(), o1.getAge());
         // return o1.getAge() - o2.getAge(); second option
     }

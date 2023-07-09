@@ -1,4 +1,4 @@
-package lesson_three;
+package study_group;
 
 public class Student implements Comparable<Student> {
     private int id;
