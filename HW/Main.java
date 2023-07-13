@@ -2,27 +2,30 @@ package HW;
 
 import java.time.LocalDate;
 
-import HW.Persons.Gender;
-import HW.Persons.Human;
-import HW.Service.FileHandler;
-import HW.Tree.FamilyTree;
+import HW.persons.Gender;
+import HW.persons.Human;
+// import HW.service.FileHandler;
+import HW.tree.FamilyTree;
 
 public class Main {
     public static void main(String[] args) {
-        FamilyTree tree = new FamilyTree();
-        FileHandler fileHandler = new FileHandler();
+        FamilyTree<Human> tree = new FamilyTree<>();
 
-        tree.add(new Human("Michael", Gender.Male, LocalDate.of(1964, 11, 21)));
-        tree.add(new Human("Elena", Gender.Female, LocalDate.of(1968, 8, 21)));
-        tree.add(new Human("Maria", Gender.Female, LocalDate.of(1991, 6, 1), tree.getByName("Michael"),
-                tree.getByName("Elena")));
-        tree.add(new Human("Anastasiia", Gender.Female, LocalDate.of(2003, 3, 25), tree.getByName("Michael"),
-                tree.getByName("Elena")));
+        Human michael = (new Human("Michael", Gender.Male, LocalDate.of(1964, 11, 21)));
+        Human elena = (new Human("Elena", Gender.Female, LocalDate.of(1968, 8, 21)));
+        Human maria = (new Human("Maria", Gender.Female, LocalDate.of(1991, 6, 1), michael, elena));
+        Human anastasiia = (new Human("Anastasiia", Gender.Female, LocalDate.of(2003, 3, 25), michael, elena));
 
-        System.out.println(tree.getInfo());
+        tree.add(michael);
+        tree.add(elena);
+        tree.add(maria);
+        tree.add(anastasiia);
 
-        fileHandler.save(tree, "HW/tree.out");
+        System.out.println(tree);
+
         // FileHandler fileHandler = new FileHandler();
+        // fileHandler.save(tree, "HW/tree.out");
+
         // FamilyTree tree = (FamilyTree) fileHandler.read("HW/tree.out");
         // System.out.println(tree);
 

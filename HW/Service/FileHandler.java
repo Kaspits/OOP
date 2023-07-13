@@ -1,4 +1,4 @@
-package HW.Service;
+package HW.service;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

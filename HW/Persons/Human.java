@@ -1,11 +1,13 @@
-package HW.Persons;
+package HW.persons;
 
-import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Human implements Serializable {
+import HW.tree.FamilyTreeItem;
+
+public class Human implements FamilyTreeItem<Human> {
     private String name;
     private Gender gender;
     private LocalDate birthDate;
@@ -44,24 +46,12 @@ public class Human implements Serializable {
         return false;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public boolean addParent(Human parent) {
         if (!parents.contains(parent)) {
             children.add(parent);
             return true;
         }
         return false;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public LocalDate getDeathDate() {
-        return deathDate;
     }
 
     public Human getFather() {
@@ -82,6 +72,38 @@ public class Human implements Serializable {
         return null;
     }
 
+    public int getAge() {
+        if (deathDate == null) {
+            return getPeriod(birthDate, LocalDate.now());
+        } else {
+            return getPeriod(birthDate, deathDate);
+        }
+    }
+
+    private int getPeriod(LocalDate birthDate, LocalDate deathDate) {
+        Period diff = Period.between(birthDate, deathDate);
+        return diff.getYears();
+    }
+
+    public String getName() {
+        return name;
+    }
+    // public void setBirthDate(LocalDate birthDate) {
+    // this.birthDate = birthDate;
+    // }
+
+    // public void setDeathDate(LocalDate deathDate) {
+    // this.deathDate = deathDate;
+    // }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public LocalDate getDeathDate() {
+        return deathDate;
+    }
+
     public List<Human> getParents() {
         return parents;
     }
@@ -90,34 +112,8 @@ public class Human implements Serializable {
         return children;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public void setDeathDate(LocalDate deathDate) {
-        this.deathDate = deathDate;
-    }
-
     public Gender getGender() {
         return gender;
-    }
-
-    @Override
-    public String toString() {
-        return getInfo();
-    }
-
-    public String getInfo() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Name: ");
-        sb.append(name);
-        sb.append(", ");
-        sb.append(getMotherInfo());
-        sb.append(", ");
-        sb.append(getFatherInfo());
-        sb.append(", ");
-        sb.append(getChildrenInfo());
-        return sb.toString();
     }
 
     public String getMotherInfo() {
@@ -167,4 +163,28 @@ public class Human implements Serializable {
         Human human = (Human) obj;
         return human.getName().equals(getName());
     }
+
+    @Override
+    public String toString() {
+        return getInfo();
+    }
+
+    public String getInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Name: ");
+        sb.append(name);
+        sb.append(", gender: ");
+        sb.append(getGender());
+        sb.append(", age: ");
+        sb.append(getAge());
+        sb.append(", ");
+        sb.append(getMotherInfo());
+        sb.append(", ");
+        sb.append(getFatherInfo());
+        sb.append(", ");
+        sb.append(getChildrenInfo());
+        sb.append(".");
+        return sb.toString();
+    }
+
 }
