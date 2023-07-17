@@ -1,6 +1,8 @@
-package study_group;
+package study_group.model.student;
 
 import java.util.Comparator;
+
+import study_group.model.group.GroupItem;
 
 public class StudentComparatorByName<E extends GroupItem> implements Comparator<E> {
     @Override

@@ -1,11 +1,12 @@
-package HW.tree;
+package HW.model.tree;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface FamilyTreeItem<T> extends Serializable {
-    // void setId(long id); // long getId();
+public interface TreeNode<T> {
+    void setId(long id);
+
+    long getId();
 
     T getFather();
 
@@ -17,11 +18,15 @@ public interface FamilyTreeItem<T> extends Serializable {
 
     String getName();
 
-    LocalDate getBirthDate();
-
     LocalDate getDeathDate();
+
+    LocalDate getBirthDate();
 
     List<T> getParents();
 
     List<T> getChildren();
+
+    T getSpouse();
+
+    void setSpouse(T human);
 }

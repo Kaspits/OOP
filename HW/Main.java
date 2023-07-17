@@ -2,10 +2,13 @@ package HW;
 
 import java.time.LocalDate;
 
-import HW.persons.Gender;
-import HW.persons.Human;
-// import HW.service.FileHandler;
-import HW.tree.FamilyTree;
+import HW.model.FamilyTreeService;
+import HW.model.human.Gender;
+import HW.model.human.Human;
+import HW.model.save.FileHandlerForFamilyTree;
+import HW.model.tree.FamilyTree;
+import HW.view.Console;
+import HW.view.View;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,14 +24,19 @@ public class Main {
         tree.add(maria);
         tree.add(anastasiia);
 
+        Human grandMother = new Human("Tatyana", Gender.Female, LocalDate.of(1948, 12, 7));
+        grandMother.addChild(michael);
+
+        tree.add(grandMother);
+
         System.out.println(tree);
 
-        // FileHandler fileHandler = new FileHandler();
-        // fileHandler.save(tree, "HW/tree.out");
+        FamilyTreeService service = new FamilyTreeService(tree);
+        service.setWritable(new FileHandlerForFamilyTree());
+        service.save();
 
-        // FamilyTree tree = (FamilyTree) fileHandler.read("HW/tree.out");
-        // System.out.println(tree);
-
+        View view = new Console();
+        view.start();
     }
 
 }

@@ -1,4 +1,4 @@
-package HW.service;
+package HW.model.save;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

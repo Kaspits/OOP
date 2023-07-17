@@ -1,4 +1,4 @@
-package study_group;
+package study_group.model.group;
 
 public interface GroupItem {
     String getName();
