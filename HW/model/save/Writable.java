@@ -1,10 +1,12 @@
 package HW.model.save;
 
-import java.io.Serializable;
+import HW.model.tree.FamilyTree;
+import HW.model.human.Human;
 
 public interface Writable {
-    boolean save(Serializable serializable, String filePath);
+    boolean save(FamilyTree<Human> tree);
 
-    Object read(String filePath);
+    FamilyTree<Human> read();
 
+    void setFilePath(String filePath);
 }

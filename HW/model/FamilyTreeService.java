@@ -2,10 +2,13 @@ package HW.model;
 
 import HW.model.tree.FamilyTree;
 import HW.model.human.Human;
-import HW.model.save.WritableForFamilyTree;
+import HW.model.human.Gender;
+import HW.model.save.Writable;
+
+import java.time.LocalDate;
 
 public class FamilyTreeService {
-    private WritableForFamilyTree writable;
+    private Writable writable;
     private FamilyTree<Human> activeTree;
 
     public FamilyTreeService(FamilyTree<Human> activeTree) {
@@ -31,22 +34,18 @@ public class FamilyTreeService {
         return true;
     }
 
-    public String addHuman(String name, String gender, String birthDate, String deathDate, String father,
-            String mother) {
-        Human humanFather = null;
-        if (!father.equals("")) {
-            // humanFather = activeTree.getByName(father);
-        }
-        if (humanFather == null) {
-            return "отец не найден";
-        }
-        // LocalDate humanBirthDate = LocalDate.parse(birthDate);
-        // Human human = new Human();
-        // activeTree.add(human);
+    public String addHuman(String name, String genderString, String birthDate,
+            long idFather, long idMother) {
+        Human father = activeTree.getById(idFather);
+        Human mother = activeTree.getById(idMother);
+        Gender gender = Gender.valueOf(genderString);
+        LocalDate humanBirthDate = LocalDate.parse(birthDate);
+        Human human = new Human(name, gender, humanBirthDate, father, mother);
+        activeTree.add(human);
         return "Человек успешно добавлен в дерево";
     }
 
-    public void setWritable(WritableForFamilyTree writable) {
+    public void setWritable(Writable writable) {
         this.writable = writable;
     }
 
